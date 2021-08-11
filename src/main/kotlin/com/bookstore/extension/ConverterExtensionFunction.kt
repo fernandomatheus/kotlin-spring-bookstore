@@ -4,6 +4,8 @@ import com.bookstore.controller.request.PostBookRequest
 import com.bookstore.controller.request.PostCustomerRequest
 import com.bookstore.controller.request.PutBookRequest
 import com.bookstore.controller.request.PutCustomerRequest
+import com.bookstore.controller.response.BookResponse
+import com.bookstore.controller.response.CustomerResponse
 import com.bookstore.enums.BookStatus
 import com.bookstore.enums.CustomerStatus
 import com.bookstore.model.BookModel
@@ -37,4 +39,20 @@ fun PutBookRequest.toBookModel(previousValue: BookModel): BookModel = BookModel(
     price = this.price ?: previousValue.price,
     status = previousValue.status,
     customer = previousValue.customer
+)
+
+fun CustomerModel.toResponse(): CustomerResponse = CustomerResponse(
+        id = this.id,
+        name = this.name,
+        email = this.email,
+        status = this.status
+    )
+
+
+fun BookModel.toResponse(): BookResponse = BookResponse(
+    id = this.id,
+    name = this.name,
+    price = this.price,
+    customer = this.customer,
+    status = this.status
 )
