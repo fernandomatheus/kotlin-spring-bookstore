@@ -2,6 +2,7 @@ package com.bookstore.service
 
 import com.bookstore.controller.request.PostCustomerRequest
 import com.bookstore.controller.request.PutCustomerRequest
+import com.bookstore.enums.CustomerStatus
 import com.bookstore.model.CustomerModel
 import com.bookstore.repository.CustomerRepository
 import org.slf4j.LoggerFactory
@@ -10,7 +11,8 @@ import java.util.logging.Logger
 
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository
+    val customerRepository: CustomerRepository,
+    val bookService: BookService
 ) {
     fun getAll(name: String?): List<CustomerModel> {
         name?.let {
@@ -35,9 +37,11 @@ class CustomerService(
     }
 
     fun delete(id: Int) {
-        if(!customerRepository.existsById(id)) {
-            throw Exception()
-        }
-        customerRepository.deleteById(id)
+        val customer = getById(id)
+        bookService.deleteByCustomer(customer)
+
+        customer.status = CustomerStatus.INACTIVE
+
+        customerRepository.save(customer)
     }
 }

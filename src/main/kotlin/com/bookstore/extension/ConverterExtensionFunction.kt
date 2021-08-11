@@ -5,20 +5,23 @@ import com.bookstore.controller.request.PostCustomerRequest
 import com.bookstore.controller.request.PutBookRequest
 import com.bookstore.controller.request.PutCustomerRequest
 import com.bookstore.enums.BookStatus
+import com.bookstore.enums.CustomerStatus
 import com.bookstore.model.BookModel
 import com.bookstore.model.CustomerModel
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel =
     CustomerModel(
         name = this.name,
-        email = this.email
+        email = this.email,
+        status = CustomerStatus.ACTIVE
     )
 
-fun PutCustomerRequest.toCustomerModel(id: Int): CustomerModel =
+fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerModel =
     CustomerModel(
-        id = id,
+        id = previousValue.id,
         name = this.name,
-        email = this.email
+        email = this.email,
+        status = previousValue.status
     )
 
 fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel = BookModel(
