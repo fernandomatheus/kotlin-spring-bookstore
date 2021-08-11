@@ -3,6 +3,6 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5432/bookstore_db?createDatabaseIfNotExist=true
+    url: jdbc:postgresql://localhost:5432/bookstore_db
     username: bookstore_dev_rw
     password: dev_database_bookstore_pass
