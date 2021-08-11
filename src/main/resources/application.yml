@@ -6,3 +6,5 @@ spring:
     url: jdbc:postgresql://localhost:5432/bookstore_db
     username: bookstore_dev_rw
     password: dev_database_bookstore_pass
+  flyway:
+    baseline-on-migrate: true
