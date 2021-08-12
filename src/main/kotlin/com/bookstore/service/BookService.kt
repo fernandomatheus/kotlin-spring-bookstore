@@ -1,6 +1,7 @@
 package com.bookstore.service
 
 import com.bookstore.enums.BookStatus
+import com.bookstore.exception.NotFoundException
 import com.bookstore.model.BookModel
 import com.bookstore.model.CustomerModel
 import com.bookstore.repository.BookRepository
@@ -25,7 +26,9 @@ class BookService(
 
 
     fun findById(id: Int): BookModel =
-        bookRepository.findById(id).orElseThrow()
+        bookRepository.findById(id).orElseThrow {
+            NotFoundException("Book $id do not exists", "KSB-0001")
+        }
 
 
     fun delete(id: Int) {
