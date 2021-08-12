@@ -1,6 +1,9 @@
 package com.bookstore.enums
 
 enum class Errors(val code: String, val message: String) {
-    KSB0001("KSB-0001", "Book %s do not exist"),
-    KSB0002("KSB-0002", "Customer %s do not exist")
+    //Book
+    KSB100("KSB-100", "Book %s do not exist"),
+    KSB101("KSB-101", "Cannot update book with status %s"),
+    //Customer
+    KSB200("KSB-200", "Customer %s do not exist")
 }

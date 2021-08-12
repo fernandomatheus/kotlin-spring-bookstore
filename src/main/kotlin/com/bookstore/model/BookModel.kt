@@ -1,6 +1,8 @@
 package com.bookstore.model
 
 import com.bookstore.enums.BookStatus
+import com.bookstore.enums.Errors
+import com.bookstore.exception.BadRequestException
 import java.math.BigDecimal
 import javax.persistence.*
 
@@ -25,7 +27,7 @@ data class BookModel(
     var status: BookStatus? = null
         set(value) {
             if(field == BookStatus.CANCELED || field == BookStatus.DELETED)
-                throw Exception("Can't update a book with status $field")
+                throw BadRequestException(Errors.KSB101.message.format(id), Errors.KSB101.code)
 
             field = value
         }

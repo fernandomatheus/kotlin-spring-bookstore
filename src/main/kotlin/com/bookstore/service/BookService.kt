@@ -28,7 +28,7 @@ class BookService(
 
     fun findById(id: Int): BookModel =
         bookRepository.findById(id).orElseThrow {
-            NotFoundException(Errors.KSB0001.message.format(id), Errors.KSB0001.code)
+            NotFoundException(Errors.KSB100.message.format(id), Errors.KSB100.code)
         }
 
 

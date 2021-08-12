@@ -1,15 +1,11 @@
 package com.bookstore.service
 
-import com.bookstore.controller.request.PostCustomerRequest
-import com.bookstore.controller.request.PutCustomerRequest
 import com.bookstore.enums.CustomerStatus
 import com.bookstore.enums.Errors
 import com.bookstore.exception.NotFoundException
 import com.bookstore.model.CustomerModel
 import com.bookstore.repository.CustomerRepository
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import java.util.logging.Logger
 
 @Service
 class CustomerService(
@@ -25,7 +21,7 @@ class CustomerService(
 
     fun getById(id: Int): CustomerModel {
         return customerRepository.findById(id).orElseThrow{
-            NotFoundException(Errors.KSB0002.message.format(id), Errors.KSB0002.code)
+            NotFoundException(Errors.KSB200.message.format(id), Errors.KSB200.code)
         }
     }
 
