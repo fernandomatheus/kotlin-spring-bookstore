@@ -1,5 +1,6 @@
 package com.bookstore.controller.request
 
+import com.bookstore.validation.EmailAvailable
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
@@ -8,5 +9,6 @@ data class PostCustomerRequest (
     var name: String,
 
     @field:Email(message = "E-mail not valid")
+    @EmailAvailable
     var email: String
 )
